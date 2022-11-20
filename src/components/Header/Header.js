@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
-import { QUERIES, WEIGHTS } from '../../constants';
-import Logo from '../Logo';
-import Icon from '../Icon';
-import UnstyledButton from '../UnstyledButton';
-import SuperHeader from '../SuperHeader';
-import MobileMenu from '../MobileMenu';
-import VisuallyHidden from '../VisuallyHidden';
+import { QUERIES, WEIGHTS } from "../../constants";
+import Logo from "../Logo";
+import Icon from "../Icon";
+import UnstyledButton from "../UnstyledButton";
+import SuperHeader from "../SuperHeader";
+import MobileMenu from "../MobileMenu";
+import VisuallyHidden from "../VisuallyHidden";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -20,12 +20,29 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <NavLink href="/sale">
+            <RegularLink>Sale</RegularLink> <BoldLink>Sale</BoldLink>
+          </NavLink>
+          <NavLink href="/new">
+            <RegularLink>New&nbsp;Releases</RegularLink>
+            <BoldLink>New&nbsp;Releases</BoldLink>
+          </NavLink>
+          <NavLink href="/men">
+            <RegularLink>Men</RegularLink>
+            <BoldLink>Men</BoldLink>
+          </NavLink>
+          <NavLink href="/women">
+            <RegularLink>Women</RegularLink>
+            <BoldLink>Women</BoldLink>
+          </NavLink>
+          <NavLink href="/kids">
+            <RegularLink>Kids</RegularLink>
+            <BoldLink>Kids</BoldLink>
+          </NavLink>
+          <NavLink href="/collections">
+            <RegularLink>Collections</RegularLink>
+            <BoldLink>Collections</BoldLink>
+          </NavLink>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
@@ -51,6 +68,19 @@ const Header = () => {
     </header>
   );
 };
+
+const RegularLink = styled.span`
+  display: block;
+  transition: transform 250ms;
+`;
+
+const BoldLink = styled.span`
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  transition: transform 250ms;
+`;
 
 const MainHeader = styled.div`
   display: flex;
@@ -115,6 +145,8 @@ const Filler = styled.div`
 `;
 
 const NavLink = styled.a`
+  overflow: hidden;
+  position: relative;
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
@@ -123,6 +155,10 @@ const NavLink = styled.a`
 
   &:first-of-type {
     color: var(--color-secondary);
+  }
+
+  &:hover ${RegularLink}, &:hover ${BoldLink} {
+    transform: translateY(-100%);
   }
 `;
 
